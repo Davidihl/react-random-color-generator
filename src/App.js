@@ -14,14 +14,14 @@ export default function App() {
       <div className="flex flex-col gap-4 w-80">
         <div
           key="colorDiv"
-          className="max-w-80 h-40 flex justify-center items-center rounded"
+          className="max-w-80 h-40 flex justify-center items-center rounded transition-all"
           style={{ backgroundColor: color }}
         >
           <span
-            className="bg-white p-4 rounded text-sm font-bold"
+            className="bg-white p-4 rounded text-sm font-bold transition-all"
             style={{ color: color }}
           >
-            {color}
+            Generated Color: {color}
           </span>
         </div>
         <form
@@ -53,7 +53,7 @@ export default function App() {
               placeholder="light"
             />
           </label>
-          <button className="bg-gray-600 text-white p-2 rounded w-1/3 h-[42px]">
+          <button className="bg-gray-600 hover:bg-red-500 transition-all text-white p-2 rounded w-1/3 h-[42px]">
             Generate
           </button>
         </form>
