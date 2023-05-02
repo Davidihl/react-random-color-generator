@@ -3,21 +3,23 @@ import { useState } from 'react';
 
 export default function App() {
   const [color, setColor] = useState(randomColor);
+  const [hue, setHue] = useState();
+  const [luminosity, setLuminosity] = useState();
 
   return (
     <div
-      key="outerDiv"
+      key="container"
       className="w-screen h-screen flex justify-center items-center"
     >
       <div className="flex flex-col gap-4 w-80">
         <div
           key="colorDiv"
           className="max-w-80 h-40 flex justify-center items-center rounded"
-          style={{ backgroundColor: `${color}` }}
+          style={{ backgroundColor: color }}
         >
           <span
             className="bg-white p-4 rounded text-sm font-bold"
-            style={{ color: `${color}` }}
+            style={{ color: color }}
           >
             {color}
           </span>
@@ -25,8 +27,7 @@ export default function App() {
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            setColor(randomColor());
-            console.log('Generate...');
+            setColor(randomColor({ hue: hue, luminosity: luminosity }));
           }}
           className="flex gap-2 bg-gray-300 p-2 rounded drop-shadow relative items-end"
         >
@@ -34,6 +35,9 @@ export default function App() {
             <div className="text-xs">Hue</div>
             <input
               key="hue"
+              onChange={(event) => {
+                setHue(event.currentTarget.value);
+              }}
               className="border border-gray-600 p-2 rounded w-full"
               placeholder="red"
             />
@@ -42,6 +46,9 @@ export default function App() {
             <div className="text-xs">Luminosity</div>
             <input
               key="luminosity"
+              onChange={(event) => {
+                setLuminosity(event.currentTarget.value);
+              }}
               className="border border-gray-600 p-2 rounded w-full"
               placeholder="light"
             />
