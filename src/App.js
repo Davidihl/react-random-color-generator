@@ -39,7 +39,7 @@ export default function App() {
                 setHue(event.currentTarget.value);
               }}
               className="border border-gray-600 p-2 rounded w-full"
-              placeholder="red"
+              placeholder="e.g red"
             />
           </label>
           <label className="w-1/3">
@@ -50,7 +50,7 @@ export default function App() {
                 setLuminosity(event.currentTarget.value);
               }}
               className="border border-gray-600 p-2 rounded w-full"
-              placeholder="light"
+              placeholder="e.g light"
             />
           </label>
           <button className="bg-gray-600 hover:bg-red-500 transition-all text-white p-2 rounded w-1/3 h-[42px]">
