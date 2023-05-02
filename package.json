@@ -34,5 +34,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "eslint-config-upleveled": "^4.1.8",
+    "stylelint": "^15.6.0",
+    "stylelint-config-upleveled": "^1.0.2",
+    "typescript": "^5.0.4"
+  },
+  "packageManager": "pnpm@8.3.1"
 }
