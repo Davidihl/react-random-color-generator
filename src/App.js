@@ -23,16 +23,24 @@ export default function App() {
             {color}
           </span>
         </div>
-        <form className="flex gap-2 bg-gray-300 p-2 rounded drop-shadow">
-          <input
-            key="hue"
-            className="border border-gray-600 p-2 rounded w-1/3"
-          />
-          <input
-            key="luminosity"
-            className="border border-gray-600 p-2 rounded w-1/3"
-          />
-          <button className="bg-gray-600 text-white p-2 rounded w-1/3">
+        <form className="flex gap-2 bg-gray-300 p-2 rounded drop-shadow relative items-end">
+          <label className="w-1/3">
+            <div className="text-xs">Hue</div>
+            <input
+              key="hue"
+              className="border border-gray-600 p-2 rounded w-full"
+              placeholder="red"
+            />
+          </label>
+          <label className="w-1/3">
+            <div className="text-xs">Luminosity</div>
+            <input
+              key="luminosity"
+              className="border border-gray-600 p-2 rounded w-full"
+              placeholder="light"
+            />
+          </label>
+          <button className="bg-gray-600 text-white p-2 rounded w-1/3 h-[42px]">
             Generate
           </button>
         </form>
