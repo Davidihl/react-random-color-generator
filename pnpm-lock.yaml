@@ -7,6 +7,9 @@ dependencies:
   '@upleveled/react-scripts':
     specifier: 5.0.4
     version: 5.0.4(@babel/plugin-syntax-flow@7.21.4)(@babel/plugin-transform-react-jsx@7.21.5)(eslint-import-resolver-typescript@3.5.5)(react@18.2.0)(typescript@5.0.4)
+  randomcolor:
+    specifier: ^0.6.2
+    version: 0.6.2
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -8379,6 +8382,10 @@ packages:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
     dependencies:
       safe-buffer: 5.2.1
+    dev: false
+
+  /randomcolor@0.6.2:
+    resolution: {integrity: sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A==}
     dev: false
 
   /range-parser@1.2.1:
