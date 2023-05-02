@@ -2,8 +2,7 @@ import randomColor from 'randomcolor';
 import { useState } from 'react';
 
 export default function App() {
-  const [color, setColor] = useState(randomColor());
-  console.log(randomColor());
+  const [color, setColor] = useState(randomColor);
 
   return (
     <div
@@ -23,7 +22,14 @@ export default function App() {
             {color}
           </span>
         </div>
-        <form className="flex gap-2 bg-gray-300 p-2 rounded drop-shadow relative items-end">
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            setColor(randomColor());
+            console.log('Generate...');
+          }}
+          className="flex gap-2 bg-gray-300 p-2 rounded drop-shadow relative items-end"
+        >
           <label className="w-1/3">
             <div className="text-xs">Hue</div>
             <input
