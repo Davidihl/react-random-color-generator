@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <>
-      {/* Screensaver */}
+      {/* Screensaver Global Styles */}
       <Global
         styles={css`
           :root {
@@ -55,6 +55,7 @@ export default function App() {
           key="colorGenerator"
           className="flex flex-col gap-4 w-80 el-wrap x"
         >
+          {/* Color div */}
           <div
             key="colorDiv"
             className="max-w-80 h-40 flex justify-center items-center rounded transition-all drop-shadow-lg el y"
@@ -63,6 +64,8 @@ export default function App() {
             Generated Color: {color}
           </div>
         </div>
+
+        {/* Form elements */}
         <div className="h-[74px]">
           <form
             key="preferences"
@@ -72,6 +75,7 @@ export default function App() {
             }}
             className="flex gap-2 bg-gray-300 p-2 relative items-end"
           >
+            {/* Hue */}
             <label className="w-1/5">
               <div className="text-xs">Hue</div>
               <input
@@ -83,6 +87,8 @@ export default function App() {
                 placeholder="e.g red"
               />
             </label>
+
+            {/* Luminosity */}
             <label className="w-1/5">
               <div className="text-xs">Luminosity</div>
               <input
@@ -94,14 +100,20 @@ export default function App() {
                 placeholder="e.g light"
               />
             </label>
+
+            {/* Width */}
             <label className="w-1/5">
               <div className="text-xs">Width</div>
-              <input className={inputClass} />
+              <input key="width" className={inputClass} />
             </label>
+
+            {/* Height */}
             <label className="w-1/5">
               <div className="text-xs">Height</div>
-              <input className={inputClass} />
+              <input key="height" className={inputClass} />
             </label>
+
+            {/* Screensaver checkbox */}
             <label className="w-1/5">
               <div className="text-xs">Bounce</div>
               <div className="h-[42px] flex items-center">
@@ -111,6 +123,8 @@ export default function App() {
                 />
               </div>
             </label>
+
+            {/* Submit button */}
             <button className="bg-gray-600 hover:bg-red-500 transition-all text-white p-2 rounded w-1/5 h-[42px]">
               Generate
             </button>
