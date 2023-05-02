@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.8",
     "@testing-library/user-event": "^13.2.1",
     "@upleveled/react-scripts": "5.0.4",
     "randomcolor": "^0.6.2",
@@ -35,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@types/randomcolor": "^0.5.7",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",

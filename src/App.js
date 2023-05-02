@@ -1,3 +1,4 @@
+import { css, Global } from '@emotion/react';
 import randomColor from 'randomcolor';
 import { useState } from 'react';
 
@@ -6,58 +7,116 @@ export default function App() {
   const [hue, setHue] = useState();
   const [luminosity, setLuminosity] = useState();
 
+  // Tailwind Input
+  const inputClass = 'border border-gray-600 p-2 rounded w-full';
+
   return (
-    <div
-      key="container"
-      className="w-screen h-screen flex justify-center items-center"
-    >
-      <div className="flex flex-col gap-4 w-80">
+    <>
+      {/* Screensaver */}
+      <Global
+        styles={css`
+          :root {
+            --width: 300px;
+            --height: 300px;
+            --x-speed: 13s;
+            --y-speed: 7s;
+            --transition-speed: 2.2s;
+          }
+
+          .el {
+            width: var(--width);
+            height: var(--height);
+          }
+
+          .x {
+            animation: x var(--x-speed) linear infinite alternate;
+          }
+          .y {
+            animation: y var(--y-speed) linear infinite alternate;
+          }
+
+          @keyframes x {
+            100% {
+              transform: translateX(calc(100vw - var(--width)));
+            }
+          }
+          @keyframes y {
+            100% {
+              transform: translateY(calc(100vh - var(--height) - 74px));
+            }
+          }
+        `}
+      />
+      <div
+        key="container"
+        className="w-screen h-screen flex flex-col justify-between"
+      >
         <div
-          key="colorDiv"
-          className="max-w-80 h-40 flex justify-center items-center rounded transition-all"
-          style={{ backgroundColor: color }}
+          key="colorGenerator"
+          className="flex flex-col gap-4 w-80 el-wrap x"
         >
-          <span
-            className="bg-white p-4 rounded text-sm font-bold transition-all"
-            style={{ color: color }}
+          <div
+            key="colorDiv"
+            className="max-w-80 h-40 flex justify-center items-center rounded transition-all drop-shadow-lg el y"
+            style={{ backgroundColor: color }}
           >
             Generated Color: {color}
-          </span>
+          </div>
         </div>
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            setColor(randomColor({ hue: hue, luminosity: luminosity }));
-          }}
-          className="flex gap-2 bg-gray-300 p-2 rounded drop-shadow relative items-end"
-        >
-          <label className="w-1/3">
-            <div className="text-xs">Hue</div>
-            <input
-              key="hue"
-              onChange={(event) => {
-                setHue(event.currentTarget.value);
-              }}
-              className="border border-gray-600 p-2 rounded w-full"
-              placeholder="e.g red"
-            />
-          </label>
-          <label className="w-1/3">
-            <div className="text-xs">Luminosity</div>
-            <input
-              key="luminosity"
-              onChange={(event) => {
-                setLuminosity(event.currentTarget.value);
-              }}
-              className="border border-gray-600 p-2 rounded w-full"
-              placeholder="e.g light"
-            />
-          </label>
-          <button className="bg-gray-600 hover:bg-red-500 transition-all text-white p-2 rounded w-1/3 h-[42px]">
-            Generate
-          </button>
-        </form>
+        <div className="h-[74px]">
+          <form
+            key="preferences"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setColor(randomColor({ hue: hue, luminosity: luminosity }));
+            }}
+            className="flex gap-2 bg-gray-300 p-2 relative items-end"
+          >
+            <label className="w-1/5">
+              <div className="text-xs">Hue</div>
+              <input
+                key="hue"
+                onChange={(event) => {
+                  setHue(event.currentTarget.value);
+                }}
+                className={inputClass}
+                placeholder="e.g red"
+              />
+            </label>
+            <label className="w-1/5">
+              <div className="text-xs">Luminosity</div>
+              <input
+                key="luminosity"
+                onChange={(event) => {
+                  setLuminosity(event.currentTarget.value);
+                }}
+                className={inputClass}
+                placeholder="e.g light"
+              />
+            </label>
+            <label className="w-1/5">
+              <div className="text-xs">Width</div>
+              <input className={inputClass} />
+            </label>
+            <label className="w-1/5">
+              <div className="text-xs">Height</div>
+              <input className={inputClass} />
+            </label>
+            <label className="w-1/5">
+              <div className="text-xs">Bounce</div>
+              <div className="h-[42px] flex items-center">
+                <input
+                  type="checkbox"
+                  className="rounded h-[22px] w-[22px] text-gray-600"
+                />
+              </div>
+            </label>
+            <button className="bg-gray-600 hover:bg-red-500 transition-all text-white p-2 rounded w-1/5 h-[42px]">
+              Generate
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
