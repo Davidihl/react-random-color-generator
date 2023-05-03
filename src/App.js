@@ -6,9 +6,21 @@ export default function App() {
   const [color, setColor] = useState(randomColor);
   const [hue, setHue] = useState();
   const [luminosity, setLuminosity] = useState();
+  const [width, setWidth] = useState('300px');
+  const [height, setHeight] = useState('300px');
+  const [bounce, setBounce] = useState(false);
+
+  console.log(bounce);
+  bounce ? console.log('el-wrap x') : console.log('nothing');
 
   // Tailwind Input
-  const inputClass = 'border border-gray-600 p-2 rounded w-full';
+  const container = 'w-screen h-screen flex flex-col justify-between';
+  const input = 'border border-gray-600 p-2 rounded w-full';
+  const form = 'flex gap-2 bg-gray-300 p-2 relative items-end';
+  const label = 'text-xs';
+  const checkbox = 'rounded h-[22px] w-[22px] text-gray-600';
+  const button =
+    'bg-gray-600 hover:bg-red-500 transition-all text-white p-2 rounded w-1/5 h-[42px]';
 
   return (
     <>
@@ -16,8 +28,8 @@ export default function App() {
       <Global
         styles={css`
           :root {
-            --width: 300px;
-            --height: 300px;
+            --width: ${width};
+            --height: ${height};
             --x-speed: 13s;
             --y-speed: 7s;
             --transition-speed: 2.2s;
@@ -47,18 +59,19 @@ export default function App() {
           }
         `}
       />
-      <div
-        key="container"
-        className="w-screen h-screen flex flex-col justify-between"
-      >
+      <div key="container" className={container}>
         <div
           key="colorGenerator"
-          className="flex flex-col gap-4 w-80 el-wrap x"
+          className={`flex flex-col gap-4 w-80 ${
+            bounce ? 'el-wrap x' : 'w-full h-full items-center justify-center'
+          }`}
         >
           {/* Color div */}
           <div
             key="colorDiv"
-            className="max-w-80 h-40 flex justify-center items-center rounded transition-all drop-shadow-lg el y"
+            className={`max-w-80 h-40 flex justify-center items-center rounded transition-all drop-shadow-lg el ${
+              bounce ? 'y' : ''
+            }`}
             style={{ backgroundColor: color }}
           >
             Generated Color: {color}
@@ -73,61 +86,56 @@ export default function App() {
               event.preventDefault();
               setColor(randomColor({ hue: hue, luminosity: luminosity }));
             }}
-            className="flex gap-2 bg-gray-300 p-2 relative items-end"
+            className={form}
           >
             {/* Hue */}
             <label className="w-1/5">
-              <div className="text-xs">Hue</div>
+              <div className={label}>Hue</div>
               <input
                 key="hue"
                 onChange={(event) => {
                   setHue(event.currentTarget.value);
                 }}
-                className={inputClass}
+                className={input}
                 placeholder="e.g red"
               />
             </label>
 
             {/* Luminosity */}
             <label className="w-1/5">
-              <div className="text-xs">Luminosity</div>
+              <div className={label}>Luminosity</div>
               <input
                 key="luminosity"
                 onChange={(event) => {
                   setLuminosity(event.currentTarget.value);
                 }}
-                className={inputClass}
+                className={input}
                 placeholder="e.g light"
               />
             </label>
 
             {/* Width */}
             <label className="w-1/5">
-              <div className="text-xs">Width</div>
-              <input key="width" className={inputClass} />
+              <div className={label}>Width</div>
+              <input key="width" className={input} />
             </label>
 
             {/* Height */}
             <label className="w-1/5">
-              <div className="text-xs">Height</div>
-              <input key="height" className={inputClass} />
+              <div className={label}>Height</div>
+              <input key="height" className={input} />
             </label>
 
             {/* Screensaver checkbox */}
             <label className="w-1/5">
-              <div className="text-xs">Bounce</div>
+              <div className={label}>Bounce</div>
               <div className="h-[42px] flex items-center">
-                <input
-                  type="checkbox"
-                  className="rounded h-[22px] w-[22px] text-gray-600"
-                />
+                <input type="checkbox" className={checkbox} />
               </div>
             </label>
 
             {/* Submit button */}
-            <button className="bg-gray-600 hover:bg-red-500 transition-all text-white p-2 rounded w-1/5 h-[42px]">
-              Generate
-            </button>
+            <button className={button}>Generate</button>
           </form>
         </div>
       </div>
