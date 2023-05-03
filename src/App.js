@@ -15,9 +15,6 @@ export default function App() {
   const [bounce, setBounce] = useState(false);
   const [bounceInput, setBounceInput] = useState(bounce);
 
-  console.log(bounce);
-  bounce ? console.log('el-wrap x') : console.log('nothing');
-
   // Tailwind Input for better readability
   const container = 'w-screen h-screen flex flex-col justify-between';
   const input = 'border border-gray-600 p-2 rounded w-full';
@@ -140,7 +137,7 @@ export default function App() {
                 <input
                   type="checkbox"
                   checked={bounceInput ? 'checked' : ''}
-                  onClick={() => setBounceInput(!bounceInput)}
+                  onChange={() => setBounceInput(!bounceInput)}
                   value={bounceInput}
                   className={checkbox}
                 />
