@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import { css, Global } from '@emotion/react';
 import randomColor from 'randomcolor';
 import { useState } from 'react';
@@ -7,13 +9,16 @@ export default function App() {
   const [hue, setHue] = useState();
   const [luminosity, setLuminosity] = useState();
   const [width, setWidth] = useState('300px');
+  const [widthInput, setWidthInput] = useState(width);
   const [height, setHeight] = useState('300px');
+  const [heightInput, setHeightInput] = useState(height);
   const [bounce, setBounce] = useState(false);
+  const [bounceInput, setBounceInput] = useState(bounce);
 
   console.log(bounce);
   bounce ? console.log('el-wrap x') : console.log('nothing');
 
-  // Tailwind Input
+  // Tailwind Input for better readability
   const container = 'w-screen h-screen flex flex-col justify-between';
   const input = 'border border-gray-600 p-2 rounded w-full';
   const form = 'flex gap-2 bg-gray-300 p-2 relative items-end';
@@ -59,16 +64,14 @@ export default function App() {
           }
         `}
       />
-      <div key="container" className={container}>
+      <div className={container}>
         <div
-          key="colorGenerator"
           className={`flex flex-col gap-4 w-80 ${
             bounce ? 'el-wrap x' : 'w-full h-full items-center justify-center'
           }`}
         >
           {/* Color div */}
           <div
-            key="colorDiv"
             className={`max-w-80 h-40 flex justify-center items-center rounded transition-all drop-shadow-lg el ${
               bounce ? 'y' : ''
             }`}
@@ -81,10 +84,8 @@ export default function App() {
         {/* Form elements */}
         <div className="h-[74px]">
           <form
-            key="preferences"
             onSubmit={(event) => {
               event.preventDefault();
-              setColor(randomColor({ hue: hue, luminosity: luminosity }));
             }}
             className={form}
           >
@@ -92,7 +93,6 @@ export default function App() {
             <label className="w-1/5">
               <div className={label}>Hue</div>
               <input
-                key="hue"
                 onChange={(event) => {
                   setHue(event.currentTarget.value);
                 }}
@@ -105,7 +105,6 @@ export default function App() {
             <label className="w-1/5">
               <div className={label}>Luminosity</div>
               <input
-                key="luminosity"
                 onChange={(event) => {
                   setLuminosity(event.currentTarget.value);
                 }}
@@ -117,25 +116,49 @@ export default function App() {
             {/* Width */}
             <label className="w-1/5">
               <div className={label}>Width</div>
-              <input key="width" className={input} />
+              <input
+                value={widthInput}
+                onChange={(event) => setWidthInput(event.currentTarget.value)}
+                className={input}
+              />
             </label>
 
             {/* Height */}
             <label className="w-1/5">
               <div className={label}>Height</div>
-              <input key="height" className={input} />
+              <input
+                value={heightInput}
+                onChange={(event) => setHeightInput(event.currentTarget.value)}
+                className={input}
+              />
             </label>
 
             {/* Screensaver checkbox */}
             <label className="w-1/5">
               <div className={label}>Bounce</div>
               <div className="h-[42px] flex items-center">
-                <input type="checkbox" className={checkbox} />
+                <input
+                  type="checkbox"
+                  checked={bounceInput ? 'checked' : ''}
+                  onClick={() => setBounceInput(!bounceInput)}
+                  value={bounceInput}
+                  className={checkbox}
+                />
               </div>
             </label>
 
             {/* Submit button */}
-            <button className={button}>Generate</button>
+            <button
+              onClick={() => {
+                setColor(randomColor({ hue: hue, luminosity: luminosity }));
+                setWidth(widthInput);
+                setHeight(heightInput);
+                setBounce(bounceInput);
+              }}
+              className={button}
+            >
+              Generate
+            </button>
           </form>
         </div>
       </div>
